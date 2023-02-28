@@ -8,23 +8,23 @@ namespace ToDoList.Controllers
   public class ItemsController : Controller
   {
 
-    [HttpGet("/items")]
+    [HttpGet("/parcels")]
     public ActionResult Index()
     {
       List<Item> allItems = Item.GetAll();
       return View(allItems);
     }
 
-    [HttpGet("/items/new")]
+    [HttpGet("/parcels/new")]
     public ActionResult CreateForm()
     {
       return View();
     }
 
-    [HttpPost("/items")]
-    public ActionResult Create(string description)
+    [HttpPost("/parcels")]
+    public ActionResult Create(string description, int length, int width, int height, int weight)
     {
-      Item myItem = new Item(description);
+      Parcel myParcek = new Parcel(description, length, width, height, weight);
       return RedirectToAction("Index");
     }
 
