@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 
-namespace ToDoList.Models
+
+namespace ShippingApp.Models
 {
   public class Parcel
   {
@@ -10,9 +11,11 @@ namespace ToDoList.Models
     public int Width { get; set; }
     public int Height { get; set; }
     public int Weight { get; set; }
+    public int Volume { get; }
+    public double ShipCost { get; }
 
 
-    private static List<Item> _instances = new List<Item> { };
+    private static List<Parcel> _instances = new List<Parcel> { };
 
     public Parcel(string description, int length, int width, int height, int weight)
     {
@@ -21,11 +24,12 @@ namespace ToDoList.Models
       Width = width;
       Height = height;
       Weight = weight;
-
+      Volume = this.SetVolume();
+      ShipCost = this.SetShipCost();
       _instances.Add(this);
     }
 
-    public static List<Item> GetAll()
+    public static List<Parcel> GetAll()
     {
       return _instances;
     }
@@ -33,6 +37,23 @@ namespace ToDoList.Models
     public static void ClearAll()
     {
       _instances.Clear();
+    }
+
+    public static void ShipParcel()
+    {
+    
+    }
+
+    public int SetVolume()
+    {
+      int volume = Length * Width * Height;
+      return volume;
+    }
+
+    public double SetShipCost()
+    {
+      double shipCost = ((Volume * Weight) * 0.25);
+      return shipCost;
     }
   }
 }

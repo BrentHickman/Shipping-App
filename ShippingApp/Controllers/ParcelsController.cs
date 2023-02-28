@@ -1,18 +1,18 @@
 using Microsoft.AspNetCore.Mvc;
-using ToDoList.Models;
+using ShippingApp.Models;
 using System.Collections.Generic;
 
 
-namespace ToDoList.Controllers
+namespace ShippingApp.Controllers
 {
-  public class ItemsController : Controller
+  public class ParcelsController : Controller
   {
 
     [HttpGet("/parcels")]
     public ActionResult Index()
     {
-      List<Item> allItems = Item.GetAll();
-      return View(allItems);
+      List<Parcel> allParcels = Parcel.GetAll();
+      return View(allParcels);
     }
 
     [HttpGet("/parcels/new")]
@@ -24,7 +24,7 @@ namespace ToDoList.Controllers
     [HttpPost("/parcels")]
     public ActionResult Create(string description, int length, int width, int height, int weight)
     {
-      Parcel myParcek = new Parcel(description, length, width, height, weight);
+      Parcel myParcel = new Parcel(description, length, width, height, weight);
       return RedirectToAction("Index");
     }
 
