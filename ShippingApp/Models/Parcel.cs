@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 
 
 namespace ShippingApp.Models
@@ -39,9 +40,18 @@ namespace ShippingApp.Models
       _instances.Clear();
     }
 
-    public static void removeParcel()
-    {
-      _instances.RemoveAt(0);
+    public static void ShipParcel(string aParcel)
+    { 
+      foreach(Parcel parcelToShip in _instances)
+      {
+        Console.WriteLine("Comparing " + parcelToShip.Description + " to " + aParcel);
+        if(parcelToShip.Description.Equals(aParcel))
+        {
+          _instances.RemoveAt(_instances.IndexOf(parcelToShip));
+          return;
+        }
+      }
+      Console.WriteLine(_instances);
     }
 
     public int SetVolume()

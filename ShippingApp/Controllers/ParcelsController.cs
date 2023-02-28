@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ShippingApp.Models;
 using System.Collections.Generic;
+using System;
 
 
 namespace ShippingApp.Controllers
@@ -25,6 +26,7 @@ namespace ShippingApp.Controllers
     public ActionResult Create(string description, int length, int width, int height, int weight)
     {
       Parcel myParcel = new Parcel(description, length, width, height, weight);
+      Console.WriteLine("end of create");
       return RedirectToAction("Index");
     }
   
@@ -34,5 +36,14 @@ namespace ShippingApp.Controllers
       Parcel.ClearAll();
       return View();
     }
+
+  [HttpPost("/parcels/shipped")]
+    public ActionResult Shipped(string passIn)
+    {
+      Console.WriteLine(passIn);
+      Parcel.ShipParcel(passIn);
+      return View();
+    }
+
   }
 }

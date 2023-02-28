@@ -19,7 +19,8 @@
   }
   <ul id="parcel-list">
     @foreach (Parcel parcel in Model)
-    {
+    { 
+      <form action="/parcels/shipped" method="post">
       <li>Description: @parcel.Description</li>
       <li>Length: @parcel.Length</li>
       <li>Width: @parcel.Width</li>
@@ -27,7 +28,10 @@
       <li>Weight: @parcel.Weight</li>
       <li>Volume: @parcel.Volume</li>
       <li>Shipping Cost: $@parcel.ShipCost</li>
+      <input name="passIn" value=@parcel.Description type="hidden"></input>
       <br>
+      <button type="submit" name="button">Ship Parcel</button>
+      </form>
     }
   </ul>
   <a href="/parcels/new">Add a new parcel.</a>
