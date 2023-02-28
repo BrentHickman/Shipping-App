@@ -27,6 +27,12 @@ namespace ShippingApp.Controllers
       Parcel myParcel = new Parcel(description, length, width, height, weight);
       return RedirectToAction("Index");
     }
-
+  
+  [HttpPost("/parcels/delete")]
+    public ActionResult DeleteAll()
+    {
+      Parcel.ClearAll();
+      return View();
+    }
   }
 }

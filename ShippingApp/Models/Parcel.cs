@@ -39,9 +39,9 @@ namespace ShippingApp.Models
       _instances.Clear();
     }
 
-    public static void ShipParcel()
+    public static void removeParcel()
     {
-    
+      _instances.RemoveAt(0);
     }
 
     public int SetVolume()

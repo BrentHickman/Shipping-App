@@ -1,37 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Shipping!</title>
-    <link 
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" 
-      rel="stylesheet" 
-      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" 
-      crossorigin="anonymous">
-  </head>
-  <body>
-    @using ShippingApp.Models;
 
-<h1>Shipping App</h1>
+<head>
+  <meta charset="utf-8">
+  <title>Shipping!</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
 
-@if (Model.Count == 0)
-{
-  <p>There are no parcels in the list</p>
-}
-<ul>
-  @foreach (Parcel parcel in Model)
+<body>
+  @using ShippingApp.Models;
+
+  <h1>Shipping App</h1>
+
+  @if (Model.Count == 0)
   {
-    <li>Description: @parcel.Description</li>
-    <li>Length: @parcel.Length</li>
-    <li>Width: @parcel.Width</li>
-    <li>Height: @parcel.Height</li>
-    <li>Weight: @parcel.Weight</li>
-    <li>Volume: @parcel.Volume</li>
-    <li>Shipping Cost: $@parcel.ShipCost</li>
-    <br>
-    <button type="click">Ship Item</button>
+    <p>There are no parcels in the list</p>
   }
-</ul>
-    <a href="/parcels/new">Add a new parcel.</a>
-  </body>
+  <ul id="parcel-list">
+    @foreach (Parcel parcel in Model)
+    {
+      <li>Description: @parcel.Description</li>
+      <li>Length: @parcel.Length</li>
+      <li>Width: @parcel.Width</li>
+      <li>Height: @parcel.Height</li>
+      <li>Weight: @parcel.Weight</li>
+      <li>Volume: @parcel.Volume</li>
+      <li>Shipping Cost: $@parcel.ShipCost</li>
+      <br>
+    }
+  </ul>
+  <a href="/parcels/new">Add a new parcel.</a>
+  
+  <form action="/parcels/delete" method="post">
+    <button type="submit" name="button">Clear All Parcels</button>
+  </form>
+</body>
+
 </html>
